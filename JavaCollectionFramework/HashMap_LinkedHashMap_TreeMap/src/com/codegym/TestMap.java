@@ -1,9 +1,6 @@
 package com.codegym;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class TestMap {
     public static void main(String[] args) {
@@ -25,5 +22,7 @@ public class TestMap {
         linkedHashMap.put("Lewis", 29);
         linkedHashMap.put("Cook", 29);
         System.out.println("\nThe age for " + "Lewis is " + linkedHashMap.get("Lewis"));
+
+        List<Integer> arrayList= new LinkedList<>();
     }
 }
