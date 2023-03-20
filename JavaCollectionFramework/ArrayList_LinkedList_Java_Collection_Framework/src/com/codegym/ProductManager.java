@@ -1,8 +1,6 @@
 package com.codegym;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProductManager {
     private static List<Product> lists;
@@ -24,9 +22,15 @@ public class ProductManager {
         }
     }
     public static void deleteProduct(long id) {
-        for(Product product : lists) {
-            if(product.getId() == id) {
-                lists.remove(product);
+//        for(Product product : lists) {
+//            if(product.getId() == id) {
+//                lists.remove(product);
+//                break;
+//            }
+//        }
+        for(int i=0;i<lists.size();i++) {
+            if(lists.get(i).getId() == id) {
+                lists.remove(i);
             }
         }
     }
@@ -35,8 +39,30 @@ public class ProductManager {
             System.out.println(product.toString());
         }
     }
-    public void searchProduct(long id){}
-    public void sortProduct(){}
+    public static void searchProduct(String name){
+        for (Product product : lists) {
+            if(Objects.equals(product.getName(), name)) {
+                System.out.println(product);
+                return;
+            }
+        } System.out.println("Không tìm thấy con vợ này hoặc là đang đi khách rồi");
+    }
+    public static void setCurrentProductByPrice(int choice) {
+        switch (choice) {
+            case 1:
+                lists.sort(Comparator.comparingLong(Product::getPrice));
+                for (Product product : lists) {
+                    System.out.println(product);
+                }
+                break;
+            case 2:
+                lists.sort(Comparator.comparingLong(Product::getPrice).reversed());
+                for (Product product : lists) {
+                    System.out.println(product);
+                }
+                break;
+        }
+    }
     public static void nextRunProduct() {
         System.out.print("""
                             1. Quay lại menu
@@ -70,6 +96,7 @@ public class ProductManager {
                     long price = Long.parseLong(sc.nextLine());
                     addProduct(addName,price);
                     System.out.println("Đào của bạn đã được thêm vào danh sách");
+                    nextRunProduct();
                     break;
                 case 2:
                     displayProduct();
@@ -91,12 +118,28 @@ public class ProductManager {
                     editProduct(id,newName,newPrice);
                     System.out.println("Đào bạn đã được danh phận mới");
                     displayProduct();
+                    nextRunProduct();
                     break;
                 case 4:
                     displayProduct();
+                    nextRunProduct();
                     break;
                 case 5:
+                    System.out.println("Nhập tên đào muốn vui vẻ tối nay: ");
+                    String name = sc.nextLine();
+                    searchProduct(name);
+                    nextRunProduct();
+                    break;
                 case 6:
+                    System.out.println("""
+                            Bạn muốn sắp xếp đào như thế nào?
+                            1. Từ tàu nhanh tới sugarbaby
+                            2. Từ sugarbaby tới tàu nhanh
+                            """);
+                    int arrangeChoice = Integer.parseInt(sc.nextLine());
+                    setCurrentProductByPrice(arrangeChoice);
+                    nextRunProduct();
+                    break;
                 case 7:
                     System.exit(0);
             }
