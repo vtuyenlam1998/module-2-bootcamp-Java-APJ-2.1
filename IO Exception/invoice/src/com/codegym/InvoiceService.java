@@ -12,7 +12,7 @@ public class InvoiceService {
     private static Scanner sc = new Scanner(System.in);
     static {
         invoices = new ArrayList<Invoice>();
-        addInvoice("Thái",50000,4);
+        addInvoice("Dúi",50000,4);
         addInvoice("Lâm",20000,4);
         addInvoice("Ân",10000,4);
         addInvoice("Hưởng",500000,5);
@@ -28,7 +28,8 @@ public class InvoiceService {
      }
      public static void writeFile(String filePath, List<Invoice> invoices, int date) {
          try{
-             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath,true));
+             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath));
+             bufferedWriter.write("Tên khách hàng \t\t" + "  Tên sản phẩm\t\t" + "Giá sản phẩm\t" + "Ngày bán\n");
              for(Invoice invoice : invoices) {
                  if (invoice.getDay() == date ) {
                      bufferedWriter.write(invoice.toString());

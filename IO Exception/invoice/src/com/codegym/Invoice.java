@@ -43,6 +43,6 @@ public class Invoice {
 
     @Override
     public String toString() {
-        return getNameCustomer() + "\t" + getNameProduct() + "\t" + getPrice() + "\t" + getDay() + "\n";
+        return "\t" + getNameCustomer() + "\t\t\t\t\t" + getNameProduct() + "\t\t\t" + getPrice() + "\t\t   " + getDay() + "\n";
     }
 }

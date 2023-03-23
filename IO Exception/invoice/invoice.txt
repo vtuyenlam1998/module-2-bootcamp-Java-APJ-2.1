@@ -1,3 +1,4 @@
-Thái	Quần lót	50000	4
-Lâm	Quần lót	20000	4
-Ân	Quần lót	10000	4
+Tên khách hàng 		   Tên sản phẩm		Giá sản phẩm	Ngày bán
+	Dúi					Quần lót			50000		   4
+	Lâm					Quần lót			20000		   4
+	Ân					Quần lót			10000		   4

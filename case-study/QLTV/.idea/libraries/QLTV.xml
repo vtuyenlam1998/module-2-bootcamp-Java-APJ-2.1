@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="QLTV">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sqljdbc4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/rs2xml.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
