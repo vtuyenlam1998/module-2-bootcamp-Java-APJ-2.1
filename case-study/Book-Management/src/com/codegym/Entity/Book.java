@@ -3,22 +3,28 @@ package com.codegym.Entity;
 import java.util.Date;
 
 public class Book {
-    private  String detail;
-    private  Date yearOfPublication;
     private  String nameBook;
+    private  Date yearOfPublication;
+    private  String detail;
     private  int ID;
     private static int count =0;
     private double price;
     private String type;
+    private long quantity;
     public Book(){}
 
-    public Book(String detail, Date yearOfPublication, String nameBook, int ID, double price, String type) {
+    public Book(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Book(String detail, Date yearOfPublication, String nameBook, double price, String type, long quantity) {
         this.detail = detail;
         this.yearOfPublication = yearOfPublication;
         this.nameBook = nameBook;
         this.ID = ++count;
         this.price = price;
         this.type = type;
+        this.quantity =quantity;
     }
 
     public String getDetail() {
