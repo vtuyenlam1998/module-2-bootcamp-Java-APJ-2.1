@@ -19,7 +19,7 @@ public class BookService extends Book {
     public BookService(){}
     public static void addBookShelf(String detail, Date yearOfPublication, String nameBook, double price, String type, long quantity) {
         if (booksList.isEmpty()) {
-            booksList.add(new Book(detail, yearOfPublication, nameBook, price, type, quantity));
+            booksList.put(new Book(detail, yearOfPublication, nameBook, price, type, quantity),1);
         } else {
             boolean checkExit = true;
             for (int i = 0; i < booksList.size(); i++) {
@@ -29,7 +29,7 @@ public class BookService extends Book {
                 }
             }
             if (checkExit) {
-                booksList.add(new Book(long quantity));
+                booksList.put(new Book(long quantity),2);
             }
         }
     }
