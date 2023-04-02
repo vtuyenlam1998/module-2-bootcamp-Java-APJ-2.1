@@ -6,31 +6,57 @@ import model.abstraction.User;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class WriteFileUlti {
     public static void writeFileUser(String path, User user) {
         try (FileWriter fileWriter = new FileWriter(path, true);
              BufferedWriter writer = new BufferedWriter(fileWriter)) {
-            writer.write(user.getFullName() + "; " + user.getPhoneNumber() + "; " + user.getEmail() + "; " + user.getPassWord() + "\n");
+            writer.write(user.getUserName() + "; " + user.getFullName() + "; " + user.getPhoneNumber() + "; " + user.getEmail() + "; " + user.getPassWord() + "; " + user.getAddress() +  "\n");
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
 
-    public static void writeFileInvoice(String path, User user, List<Book> book) {
+    public static void writeFileInvoice(String path, User user) {
         try (FileWriter fileWriter = new FileWriter(path);
              BufferedWriter writer = new BufferedWriter(fileWriter)) {
-//            writer.write(user.getFullName() + "; " + user.getPhoneNumber() + "; " + user.getEmail() + "; " + user.getPassWord() + "\n");
             writer.write(String.format("""
-                    THÔNG TIN KHÁCH HÀNG
-                    Tên khách hàng: %s
-                    Số điện thoại: %s
-                    Email: %s
-                    Địa chỉ: %s
-                    Sản phẩm đã mua: %s
-                    Tổng giá tiền: 
-                    """,user.getFullName(),user.getPhoneNumber(),user.getEmail(),user.getAddress()));
+                    \t\t\t\tHÓA ĐƠN
+                    %s
+                    \n
+                    """, user.toString()));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void writeFileAppendInvoice(String path, List<Book> bookList) {
+        try (FileWriter fileWriter = new FileWriter(path, true);
+             BufferedWriter writer = new BufferedWriter(fileWriter)) {
+            writer.write("THÔNG TIN GIỎ HÀNG" + "\n" + "Số lượng sản phẩm đã mua: " + bookList.size() + "\n");
+            int sumOfCart = 0;
+            for (Book book : bookList) {
+                writer.write(String.format("""
+                        Sản phẩm đã mua: %s
+                        Giá tiền sản phẩm: %d
+                        """, book.getNameBook(), book.getPrice()));
+                sumOfCart += book.getPrice();
+            }
+            writer.write("Tổng tiền: " + sumOfCart + " ₫");
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    public static void writeFileAppendInvoiceHistory(String path,User user,List<Book> bookCart) {
+        try (FileWriter fileWriter = new FileWriter(path, true);
+             BufferedWriter writer = new BufferedWriter(fileWriter)) {
+            for (Book book : bookCart) {
+                writer.write(user.getFullName() + "; " + book.getNameBook() + "; " + book.getPrice() + "; " + book.getNumberOfBookPurchase() + "; " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "\n");
+            }
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

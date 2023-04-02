@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Input {
     private static final Scanner sc = new Scanner(System.in);
-    public static int choiceIntergerInput(String request) {
+    public static int choiceIntegerInput(String request) {
         int choice;
         do {
             try {
@@ -25,10 +25,10 @@ public class Input {
         String text;
         do {
             text = promt(request);
-            if(!Validation.validate(text,regexPattern)) {
+            if(Validation.validate(text, regexPattern)) {
                 System.out.println("Invalid Input! Wrong format! ");
             }
-        } while (!Validation.validate(text,regexPattern));
+        } while (Validation.validate(text, regexPattern));
         return text;
     }
 }

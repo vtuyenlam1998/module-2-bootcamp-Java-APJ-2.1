@@ -21,7 +21,7 @@ public class Validation {
             case "PASSWORD" -> pattern = Pattern.compile(PASSWORD_REGEX);
         }
         Matcher matcher = pattern.matcher(regex);
-        return matcher.matches();
+        return !matcher.matches();
     }
 
 

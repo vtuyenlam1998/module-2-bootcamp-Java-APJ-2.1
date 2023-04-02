@@ -3,6 +3,7 @@ package model.builder;
 import model.abstraction.User;
 
 public class UserConcreteBuilder implements UserBuilder{
+    private int id;
     private String fullName;
     private String passWord;
     private String email;
@@ -36,6 +37,13 @@ public class UserConcreteBuilder implements UserBuilder{
         this.address = address;
         return this;
     }
+
+    @Override
+    public UserBuilder setID(int id) {
+        this.id = id;
+        return this;
+    }
+
     @Override
     public User build() {
         return new User(fullName, phoneNumber, email, address){};

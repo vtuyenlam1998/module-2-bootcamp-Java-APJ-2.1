@@ -1,17 +1,20 @@
 package model.abstraction;
 
 public abstract class User {
+    private int ID;
     private String userName;
     private String fullName;
     private String phoneNumber;
     private String email;
     private String passWord;
     private String address;
+    private static int count = 0;
 
     public User() {
     }
 
     protected User(String userName, String fullName, String phoneNumber, String email, String passWord, String address) {
+        this.ID = ++count;
         this.userName = userName;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -21,6 +24,7 @@ public abstract class User {
     }
 
     protected User(String fullName, String phoneNumber, String email, String address) {
+        this.ID = ++count;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -30,6 +34,14 @@ public abstract class User {
     protected User(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int id) {
+        this.ID = id;
     }
 
     public String getUserName() {
@@ -75,6 +87,7 @@ public abstract class User {
     @Override
     public String toString() {
         return "THÔNG TIN NGƯỜI DÙNG: "
+                + "\n" + "- ID: " + ID
                 + "\n" + "- Tên họ đầy đủ: " + fullName
                 + "\n" + "- Số điện thoại: " + phoneNumber
                 + "\n" + "- Email: " + email

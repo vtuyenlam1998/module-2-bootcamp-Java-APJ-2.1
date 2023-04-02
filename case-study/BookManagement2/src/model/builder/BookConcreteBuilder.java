@@ -7,17 +7,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookConcreteBuilder implements BookBuilder {
-    private String id;
     private String nameBook;
     private String type;
     private Date yearOfPublication;
     private String detail;
-    private double price;
+    private int price;
     private long quantity;
 
     @Override
-    public BookBuilder setID(String id) {
-        this.id = id;
+    public BookBuilder setID(int id) {
         return this;
     }
 
@@ -35,7 +33,7 @@ public class BookConcreteBuilder implements BookBuilder {
 
     @Override
     public BookBuilder setYearOfPublication(String yearOfPublication) throws ParseException {
-        this.yearOfPublication = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(yearOfPublication);
+        this.yearOfPublication = new SimpleDateFormat("dd-MM-yyyy").parse(yearOfPublication);
         return this;
     }
 
@@ -45,7 +43,7 @@ public class BookConcreteBuilder implements BookBuilder {
         return this;
     }
     @Override
-    public BookBuilder setPrice(double price) {
+    public BookBuilder setPrice(int price) {
         this.price = price;
         return this;
     }
@@ -58,6 +56,6 @@ public class BookConcreteBuilder implements BookBuilder {
 
     @Override
     public Book build() {
-        return new Book(id,nameBook,type,yearOfPublication,detail,price,quantity);
+        return new Book(nameBook,type,yearOfPublication,detail,price,quantity);
     }
 }
