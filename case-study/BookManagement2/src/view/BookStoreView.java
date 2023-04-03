@@ -85,6 +85,7 @@ public class BookStoreView {
                         break;
                     case 3:
                         System.out.println(userService.getCurrentUser());
+                        userService.editAccountInformation();
                         break;
                     case 4:
                         userService.getCustomerInfo();
@@ -94,6 +95,7 @@ public class BookStoreView {
                         break;
                     case 6:
                         invoiceService.getSaleAndProfitInMonth();
+                        break;
                     case 7:
                         displayMainMenu();
                         break;
@@ -134,11 +136,10 @@ public class BookStoreView {
                         break;
                     case 3:
                         bookService.sortBookByPrice();
-                        ReturnFunction.backPage();
                         break;
                     case 4:
                         System.out.println(userService.getCurrentUser());
-                        ReturnFunction.backPage();
+                        userService.editAccountInformation();
                         break;
                     case 5:
                         cartService.checkCart();

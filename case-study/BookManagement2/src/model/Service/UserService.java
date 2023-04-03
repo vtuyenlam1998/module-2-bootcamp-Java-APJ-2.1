@@ -8,7 +8,6 @@ import model.exception.InvalidChoiceException;
 import model.factory.UserFactory;
 import model.ulti.Input;
 import model.ulti.ReadFileUlti;
-import model.ulti.ReturnFunction;
 import model.ulti.WriteFileUlti;
 
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ public class UserService {
     private static final List<Staff> STAFF_LIST = new ArrayList<>();
     private static final List<User> USER_LIST = new ArrayList<>();
     private User currentUser;
-    private User newUser;
 
     static {
         List<Customer> customerList = ReadFileUlti.fileReadingCustomer("src\\model\\data\\customer.csv");
@@ -45,6 +43,22 @@ public class UserService {
         return currentUser;
     }
 
+    public List<Customer> getCustomerList() {
+        return CUSTOMER_LIST;
+    }
+
+    public List<Staff> getStaffList() {
+        return STAFF_LIST;
+    }
+
+    public boolean isCheckCustomer() {
+        return checkCustomer;
+    }
+
+    public boolean isCheckStaff() {
+        return checkStaff;
+    }
+
     public void logIn() {
         do {
             try {
@@ -52,23 +66,23 @@ public class UserService {
                 String passWord = Input.promt("Nhập mật khẩu: ");
                 String logIn = Input.promt("Xác nhận đăng nhập (Y/N): ");
                 if (logIn.equalsIgnoreCase("Y")) {
-                    for (int i = 0; i < USER_LIST.size(); i++) {
-                        if (userName.equals(USER_LIST.get(i).getUserName())) {
-                            for (int j = 0; j < CUSTOMER_LIST.size(); j++) {
-                                if (userName.equals(CUSTOMER_LIST.get(j).getUserName())) {
-                                    if (passWord.equals(CUSTOMER_LIST.get(j).getPassWord())) {
+                    for (User user : USER_LIST) {
+                        if (userName.equals(user.getUserName())) {
+                            for (Customer customer : CUSTOMER_LIST) {
+                                if (userName.equals(customer.getUserName())) {
+                                    if (passWord.equals(customer.getPassWord())) {
                                         System.out.println("Đăng nhập thành công! Chào mừng khách hàng: " + userName + " trở lại ");
-                                        currentUser = CUSTOMER_LIST.get(j);
+                                        currentUser = customer;
                                         checkCustomer = true;
                                         return;
                                     }
                                 }
                             }
-                            for (int k = 0; k < STAFF_LIST.size(); k++) {
-                                if (userName.equals(STAFF_LIST.get(k).getUserName())) {
-                                    if (passWord.equals(STAFF_LIST.get(k).getPassWord())) {
+                            for (Staff staff : STAFF_LIST) {
+                                if (userName.equals(staff.getUserName())) {
+                                    if (passWord.equals(staff.getPassWord())) {
                                         System.out.println("Đăng nhập thành công! Chào mừng nhân viên: " + userName + " trở lại");
-                                        currentUser = STAFF_LIST.get(k);
+                                        currentUser = staff;
                                         checkStaff = true;
                                         return;
                                     }
@@ -83,15 +97,6 @@ public class UserService {
             }
         } while (true);
     }
-
-    public boolean isCheckCustomer() {
-        return checkCustomer;
-    }
-
-    public boolean isCheckStaff() {
-        return checkStaff;
-    }
-
     public void signUp() {
         System.out.println("""
                 1. Bạn là nhân viên
@@ -101,6 +106,7 @@ public class UserService {
         int choice = Input.choiceIntegerInput("Nhập lựa chọn: ");
         do {
             try {
+                User newUser;
                 switch (choice) {
                     case 1:
                         String staffName = Input.prompt("Nhập tài khoản: ", "USER_NAME");
@@ -166,12 +172,153 @@ public class UserService {
     public void getCustomerInfo() {
         do {
             try {
-                CUSTOMER_LIST.stream().forEach(Customer -> System.out.println("ID: " + Customer.getID() + ". " + Customer.getFullName()));
-                int choice = Input.choiceIntegerInput("Nhập ID khách hàng muốn xem: ");
-                if (choice <= CUSTOMER_LIST.size()) {
-                    CUSTOMER_LIST.stream().filter(ele -> ele.getID() == choice).forEach(System.out::println);
+                CUSTOMER_LIST.forEach(Customer -> System.out.println("ID: " + Customer.getID() + ". " + Customer.getFullName()));
+                int ID = Input.choiceIntegerInput("Nhập ID khách hàng muốn xem: ");
+                if (ID <= CUSTOMER_LIST.size()) {
+                    CUSTOMER_LIST.stream().filter(ele -> ele.getID() == ID).forEach(System.out::println);
+                    editCustomerAccountInformation(ID);
                     return;
                 } else throw new InvalidChoiceException("Nhập đoàng hoàng cái coi!");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
+    }
+
+    public void editAccountInformation() {
+        do {
+            try {
+                System.out.println("""
+                        Bạn muốn sửa thông tin nào ?
+                        1. Tên họ đầy đủ
+                        2. Số điện thoại
+                        3. Địa chỉ email
+                        4. Địa chỉ nhà
+                        5. Mật khẩu
+                        6. Quay lại Main Menu
+                        """);
+                int choice = Input.choiceIntegerInput("Nhập lựa chọn: ");
+                switch (choice) {
+                    case 1:
+                        System.out.println(currentUser.getFullName());
+                        String editUserName = Input.promt("Nhập tên mới cho người dùng: ");
+                        currentUser.setFullName(editUserName);
+                        System.out.println("Bạn đã chỉnh sửa thành công");
+                        break;
+                    case 2:
+                        System.out.println(currentUser.getPhoneNumber());
+                        String editPhoneNumber = Input.prompt("Nhập số điện thoại mới cho người dùng: ", "PHONE_NUMBER");
+                        currentUser.setPhoneNumber(editPhoneNumber);
+                        System.out.println("Bạn đã chỉnh sửa thành công");
+                        break;
+                    case 3:
+                        System.out.println(currentUser.getEmail());
+                        String editUserEmail = Input.prompt("Nhập tên mới cho người dùng: ", "EMAIL");
+                        currentUser.setEmail(editUserEmail);
+                        System.out.println("Bạn đã chỉnh sửa thành công");
+                        break;
+                    case 4:
+                        System.out.println(currentUser.getAddress());
+                        String editUserAddress = Input.promt("Nhập tên mới cho người dùng: ");
+                        currentUser.setAddress(editUserAddress);
+                        System.out.println("Bạn đã chỉnh sửa thành công");
+                        break;
+                    case 5:
+                        String oldPassWordVerify = Input.promt("Nhập lại mật khẩu cũ: ");
+                        if (oldPassWordVerify.equals(currentUser.getPassWord())) {
+                            String editUserPassword = Input.prompt("Nhập mật khẩu mới cho người dùng: ", "PASSWORD");
+                            currentUser.setPassWord(editUserPassword);
+                            System.out.println("Bạn đã chỉnh sửa thành công");
+                            break;
+                        }
+                        throw new InvalidAccountException("Sai mật khẩu nhé! Cảnh cáo nhé!");
+                    case 6:
+                        return;
+                    default:
+                        throw new InvalidChoiceException("Có nhập đoàng hoàng không thì bảo!");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
+    }
+
+    public void editCustomerAccountInformation(int ID) {
+        do {
+            try {
+                System.out.println("""
+                        Bạn muốn sửa thông tin nào ?
+                        1. Tên họ đầy đủ
+                        2. Số điện thoại
+                        3. Địa chỉ email
+                        4. Địa chỉ nhà
+                        5. Mật khẩu
+                        6. Quay lại Main Menu
+                        """);
+                int choice = Input.choiceIntegerInput("Nhập lựa chọn: ");
+                switch (choice) {
+                    case 1:
+                        for (Customer customer : CUSTOMER_LIST) {
+                            if (customer.getID() == ID) {
+                                System.out.println(customer.getFullName());
+                                String editUserName = Input.promt("Nhập tên mới cho người dùng: ");
+                                customer.setFullName(editUserName);
+                                System.out.println("Bạn đã chỉnh sửa thành công");
+                                break;
+                            }
+                        }
+                        break;
+                    case 2:
+                        for (Customer customer : CUSTOMER_LIST) {
+                            if (customer.getID() == ID) {
+                                System.out.println(customer.getPhoneNumber());
+                                String editPhoneNumber = Input.prompt("Nhập số điện thoại mới cho người dùng: ", "PHONE_NUMBER");
+                                customer.setPhoneNumber(editPhoneNumber);
+                                System.out.println("Bạn đã chỉnh sửa thành công");
+                                break;
+                            }
+                        }
+                        break;
+                    case 3:
+                        for (Customer customer : CUSTOMER_LIST) {
+                            if (customer.getID() == ID) {
+                                System.out.println(customer.getEmail());
+                                String editUserEmail = Input.prompt("Nhập email mới cho người dùng: ", "EMAIL");
+                                customer.setEmail(editUserEmail);
+                                System.out.println("Bạn đã chỉnh sửa thành công");
+                                break;
+                            }
+                        }
+                        break;
+                    case 4:
+                        for (Customer customer : CUSTOMER_LIST) {
+                            if (customer.getID() == ID) {
+                                System.out.println(customer.getAddress());
+                                String editUserAddress = Input.promt("Nhập địa chỉ mới cho người dùng: ");
+                                customer.setAddress(editUserAddress);
+                                System.out.println("Bạn đã chỉnh sửa thành công");
+                                break;
+                            }
+                        }
+                        break;
+                    case 5:
+                        for (Customer customer : CUSTOMER_LIST) {
+                            if (customer.getID() == ID) {
+                                String oldPassWordVerify = Input.promt("Nhập lại mật khẩu cũ: ");
+                                if (oldPassWordVerify.equals(customer.getPassWord())) {
+                                    String editUserPassword = Input.prompt("Nhập mật khẩu mới cho người dùng: ", "PASSWORD");
+                                    customer.setPassWord(editUserPassword);
+                                    System.out.println("Bạn đã chỉnh sửa thành công");
+                                    break;
+                                } else  { throw new InvalidAccountException("Sai mật khẩu nhé! Cảnh cáo nhé!"); }
+                            }
+                        }
+                        break;
+                    case 6:
+                        return;
+                    default:
+                        throw new InvalidChoiceException("Có nhập đoàng hoàng không thì bảo!");
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

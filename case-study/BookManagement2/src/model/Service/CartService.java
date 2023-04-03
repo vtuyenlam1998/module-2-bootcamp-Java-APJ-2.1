@@ -3,7 +3,6 @@ package model.Service;
 import model.abstraction.Book;
 import model.exception.InvalidChoiceException;
 import model.ulti.Input;
-import model.ulti.ReadFileUlti;
 import model.ulti.ReturnFunction;
 import model.ulti.WriteFileUlti;
 
@@ -77,8 +76,7 @@ public class CartService {
                         int choice = Input.choiceIntegerInput("Nhập lựa chọn: ");
                         switch (choice) {
                             case 1:
-                                if (bookList.contains(BOOK_CART)) {
-                                    for (int i = 0; i < BOOK_CART.size(); ) {
+                                    for (int i = 0; i < BOOK_CART.size(); i++) {
                                         for (int j = 0; j < bookList.size(); j++) {
                                             if (BOOK_CART.get(i).getID() == (bookList.get(j).getID())) {
                                                 bookList.get(j).setQuantity();
@@ -87,12 +85,12 @@ public class CartService {
                                             }
                                         }
                                     }
-                                }
                                 System.out.println("Đang thực hiện giao dịch ...");
                                 System.out.println("Bạn đã thanh toán thành công, sách sẽ được chuyển tới từ 3 - 5 ngày ");
                                 WriteFileUlti.writeFileInvoice("src\\model\\data\\invoice.txt", userService.getCurrentUser());
                                 WriteFileUlti.writeFileAppendInvoice("src\\model\\data\\invoice.txt",BOOK_CART);
                                 WriteFileUlti.writeFileAppendInvoiceHistory("src\\model\\data\\invoiceHistory.csv", userService.getCurrentUser(), BOOK_CART);
+                                BOOK_CART.clear();
                                 return;
                             case 2:
                                 return;

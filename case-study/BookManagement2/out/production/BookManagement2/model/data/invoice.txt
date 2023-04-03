@@ -8,7 +8,9 @@ THÔNG TIN NGƯỜI DÙNG:
 
 
 THÔNG TIN GIỎ HÀNG
-Số lượng sản phẩm đã mua: 1
-Sản phẩm đã mua: Đứa Trẻ Hư (Tái Bản)
-Giá tiền sản phẩm: 150500
-Tổng tiền: 150500 ₫
+Số lượng sản phẩm đã mua: 2
+Sản phẩm đã mua: Ngôi Làng Cổ Mộ
+Giá tiền sản phẩm: 157000
+Sản phẩm đã mua: Ngôi Làng Cổ Mộ
+Giá tiền sản phẩm: 157000
+Tổng tiền: 314000 ₫

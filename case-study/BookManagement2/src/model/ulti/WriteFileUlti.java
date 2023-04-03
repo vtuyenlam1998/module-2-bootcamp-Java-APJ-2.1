@@ -7,8 +7,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class WriteFileUlti {
@@ -54,11 +54,16 @@ public class WriteFileUlti {
     public static void writeFileAppendInvoiceHistory(String path,User user,List<Book> bookCart) {
         try (FileWriter fileWriter = new FileWriter(path, true);
              BufferedWriter writer = new BufferedWriter(fileWriter)) {
+            HashSet<Book> printedBook = new HashSet<>();
             for (Book book : bookCart) {
-                writer.write(user.getFullName() + "; " + book.getNameBook() + "; " + book.getPrice() + "; " + book.getNumberOfBookPurchase() + "; " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "\n");
+                if (!printedBook.contains(book)) {
+                    writer.write(user.getFullName() + "; " + book.getNameBook() + "; " + (book.getPrice() * book.getNumberOfBookPurchase()) + "; " + book.getNumberOfBookPurchase() + "; " + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + "\n");
+                    printedBook.add(book);
+                }
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
+
 }

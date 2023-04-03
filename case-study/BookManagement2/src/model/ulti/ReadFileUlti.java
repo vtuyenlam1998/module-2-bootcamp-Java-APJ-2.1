@@ -46,8 +46,7 @@ public class ReadFileUlti {
                     properties[INDEX_OF_PHONE_NUMBER],
                     properties[INDEX_OF_EMAIL],
                     properties[INDEX_OF_PASSWORD],
-                    properties[INDEX_OF_ADDRESS]) {
-            });
+                    properties[INDEX_OF_ADDRESS]));
         }
         return customerList;
     }
@@ -70,8 +69,7 @@ public class ReadFileUlti {
                     properties[INDEX_OF_PHONE_NUMBER],
                     properties[INDEX_OF_EMAIL],
                     properties[INDEX_OF_PASSWORD],
-                    properties[INDEX_OF_ADDRESS]) {
-            });
+                    properties[INDEX_OF_ADDRESS]));
         }
         return customerList;
     }

@@ -6,6 +6,7 @@ import model.exception.InvalidChoiceException;
 import model.ulti.Input;
 import model.ulti.ReadFileUlti;
 import model.ulti.ReturnFunction;
+import view.BookStoreView;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import java.util.List;
 
 public class BookService {
     private static final BookService bookService = new BookService();
+    private static final BookStoreView bookStoreView = BookStoreView.getInstance();
+    private static final UserService userService = UserService.getInstance();
 
     private BookService() {
     }
@@ -49,48 +52,49 @@ public class BookService {
                         Bạn muốn sắp xếp sách như thế nào?
                         1. Từ rẻ tới đắt
                         2. Từ đắt tới rẻ
-                        3. Quay lại trang trước
+                        3. Từ cũ nhất tới mới nhất
+                        4. Từ mới nhất tới cũ nhất
+                        5. Quay lại trang trước
                         """);
                 int setChoice = Input.choiceIntegerInput("Enter your choice: ");
                 switch (setChoice) {
                     case 1:
                         BOOK_LIST.sort(Comparator.comparingDouble(Book::getPrice));
-                        for (Book bookShelf : BOOK_LIST) {
-                            System.out.println("ID: " + bookShelf.getID() + ". " + bookShelf.getNameBook() + " | Giá tiền: " + bookShelf.getPrice() + "₫");
+                        for (Book book : BOOK_LIST) {
+                            System.out.println("ID: " + book.getID() + ". " + book.getNameBook() + " | Giá tiền: " + book.getPrice() + "₫");
                         }
                         ReturnFunction.backPage();
                         break;
                     case 2:
                         BOOK_LIST.sort(Comparator.comparing(Book::getPrice).reversed());
-                        for (Book bookShelf : BOOK_LIST) {
-                            System.out.println("ID: " + bookShelf.getID() + ". " + bookShelf.getNameBook() + " | Giá tiền: " + bookShelf.getPrice() + "₫");
+                        for (Book book : BOOK_LIST) {
+                            System.out.println("ID: " + book.getID() + ". " + book.getNameBook() + " | Giá tiền: " + book.getPrice() + "₫");
                         }
                         ReturnFunction.backPage();
                         break;
                     case 3:
-                        displayDetailOfBook();
+                        BOOK_LIST.stream().sorted(Comparator.comparing(Book::getYearOfPublication)).forEach(Book -> System.out.println("ID: " + Book.getID() + ". " + Book.getNameBook() + " | Ngày xuất bản: " + Book.getFormatYearOfPublication()));
+                        ReturnFunction.backPage();
                         break;
+                    case 4:
+                        BOOK_LIST.stream().sorted(Comparator.comparing(Book::getYearOfPublication).reversed()).forEach(Book -> System.out.println("ID: " + Book.getID() + ". " + Book.getNameBook() + " | Ngày xuất bản: " + Book.getFormatYearOfPublication()));
+                        ReturnFunction.backPage();
+                        break;
+                    case 5:
+                        return;
                     default:
                         throw new InvalidChoiceException("Lựa chọn không hợp lệ");
                 }
-                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } while (true);
     }
-
-    public void sortBookByYearOfPublication() {
-    }
-
-    public void sortBookByType() {
-    }
-
     public void searchBookByType(String type) {
         try {
             boolean isExistTypeOfBook = false;
             for (Book bookShelf : BOOK_LIST) {
-                if (bookShelf.getType().equalsIgnoreCase(type)) {
+                if ((bookShelf.getType().toUpperCase()).contains(type.toUpperCase())) {
                     System.out.println(bookShelf);
                     isExistTypeOfBook = true;
                 }
@@ -176,7 +180,8 @@ public class BookService {
     public List<Book> selecBookToBuy() {
         do {
             try {
-                BOOK_LIST.stream().forEach(Book -> System.out.println("ID: " + Book.getID() + ". " + Book.getNameBook() + " | " + Book.getType()));                int ID = Input.choiceIntegerInput("Nhập ID sách muốn mua: ");
+                BOOK_LIST.forEach(Book -> System.out.println("ID: " + Book.getID() + ". " + Book.getNameBook() + " | " + " Số lượng: " + Book.getQuantity()));
+                int ID = Input.choiceIntegerInput("Nhập ID sách muốn mua: ");
                 if (ID <= BOOK_LIST.size()) {
                     for (Book book : BOOK_LIST) {
                         if ((book.getID()) == ID) {
@@ -193,7 +198,6 @@ public class BookService {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            return BOOK_CART;
         } while (true);
     }
 
@@ -205,6 +209,7 @@ public class BookService {
                         1. Thêm sách vào cửa hàng
                         2. Xóa sách ra khỏi cửa hàng
                         3. Sửa thông tin của sách
+                        4. Quay lại
                         """);
                 int choice = Input.choiceIntegerInput("Nhập lựa chọn: ");
                 switch (choice) {
@@ -215,9 +220,10 @@ public class BookService {
                         removeOldBook();
                         break;
                     case 3:
-
                         editBookInformation();
                         break;
+                    case 4:
+                        return;
                     default:
                         throw new InvalidChoiceException("Lựa chọn không hợp lệ");
                 }
@@ -231,7 +237,7 @@ public class BookService {
     public void editBookInformation() throws ParseException {
         do {
             try {
-                BOOK_LIST.stream().forEach(Book -> System.out.println("ID: " + Book.getID() + ". " + Book.getNameBook() + " | " + Book.getType()));
+                BOOK_LIST.forEach(Book -> System.out.println("ID: " + Book.getID() + ". " + Book.getNameBook() + " | " + Book.getType()));
                 System.out.println("""
                 Bạn muốn sửa thông tin nào của sách?
                 1. Tên sách
@@ -240,6 +246,7 @@ public class BookService {
                 4. Nội dung
                 5. Giá tiền
                 6. Số lượng sách còn
+                7. Quay lại
                 """);
                 int choice = Input.choiceIntegerInput("Nhập lựa chọn: ");
                 int id = Input.choiceIntegerInput("Nhập ID sách muốn sửa: ");
@@ -250,6 +257,7 @@ public class BookService {
                                 System.out.println(book.getNameBook());
                                 String editBookName = Input.promt("Nhập tên mới cho sách: ");
                                 book.setNameBook(editBookName);
+                                System.out.println("Sách đã được chỉnh sửa thành công!");
                                 break;
                             }
                         }
@@ -260,6 +268,7 @@ public class BookService {
                                 System.out.println(book.getType());
                                 String editBookType = Input.promt("Nhập thể loại mới cho sách: ");
                                 book.setType(editBookType);
+                                System.out.println("Sách đã được chỉnh sửa thành công!");
                                 break;
                             }
                         }
@@ -270,6 +279,7 @@ public class BookService {
                                 System.out.println(book.getFormatYearOfPublication());
                                 String editBookDate = Input.promt("Nhập ngày mới cho sách: ");
                                 book.setYearOfPublication(editBookDate);
+                                System.out.println("Sách đã được chỉnh sửa thành công!");
                                 break;
                             }
                         }
@@ -280,6 +290,7 @@ public class BookService {
                                 System.out.println(book.getDetail());
                                 String editBookDetail = Input.promt("Nhập nội dung mới cho sách: ");
                                 book.setDetail(editBookDetail);
+                                System.out.println("Sách đã được chỉnh sửa thành công!");
                                 break;
                             }
                         }
@@ -290,6 +301,7 @@ public class BookService {
                                 System.out.println(book.getPrice());
                                 String editBookPrice = Input.promt("Nhập giá mới cho sách: ");
                                 book.setPrice(Integer.parseInt(editBookPrice));
+                                System.out.println("Sách đã được chỉnh sửa thành công!");
                                 break;
                             }
                         }
@@ -300,10 +312,12 @@ public class BookService {
                                 System.out.println(book.getQuantity());
                                 String editBookQuantity = Input.promt("Nhập tồn mới cho sách: ");
                                 book.setQuantity(Long.parseLong(editBookQuantity));
+                                System.out.println("Sách đã được chỉnh sửa thành công!");
                                 break;
                             }
                         }
                         break;
+                    case 7: return;
                     default:
                         throw new InvalidChoiceException("Lựa chọn không hợp lệ");
                 }

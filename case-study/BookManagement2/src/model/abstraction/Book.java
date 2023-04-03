@@ -18,6 +18,10 @@ public class Book {
     public Book() {
     }
 
+    public Date getYearOfPublication() {
+        return yearOfPublication;
+    }
+
     public void setNameBook(String nameBook) {
         this.nameBook = nameBook;
     }
@@ -63,9 +67,8 @@ public class Book {
     }
 
     public void setQuantity() {
-        this.quantity--;
+        this.quantity = quantity - 1;
     }
-
     @Override
     public String toString() {
         return "THÔNG TIN SẢN PHẨM: "
