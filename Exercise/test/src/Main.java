@@ -29,6 +29,8 @@ public class Main {
                         break;
                     case 3:
                     case 4:
+                        ProductService.deleteProduct();
+                        break;
                     case 5:
                     case 6:
                     case 7:
