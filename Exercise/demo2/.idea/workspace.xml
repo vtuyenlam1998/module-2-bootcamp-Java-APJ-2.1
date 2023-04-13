@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59835fa8-ed73-4a26-a14e-128faaaeb909" name="Changes" comment="">
+    <list default="true" id="93f0f3ee-1fc8-4b2f-b3ef-94cc61d907c8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Case/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Case/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Case/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case/Case.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Case/Case.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case/src/Service/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Case/src/Service/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Case/src/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Case/src/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -13,21 +18,15 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2MzCP0DyXN0voqmMVQgRYM5NGBB" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2OM3bKQZZTGUZl8T1QHyfeBPMtd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -46,42 +45,43 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Service.Main" />
-      <module name="Case" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="Tomcat 9.0.73" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.73" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment>
+        <artifact name="Gradle : com.example : demo2-1.0-SNAPSHOT.war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/Gradle___com_example___demo2_1_0_SNAPSHOT_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
       <method v="2">
         <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Gradle : com.example : demo2-1.0-SNAPSHOT.war" />
+        </option>
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="59835fa8-ed73-4a26-a14e-128faaaeb909" name="Changes" comment="" />
-      <created>1678760997181</created>
+      <changelist id="93f0f3ee-1fc8-4b2f-b3ef-94cc61d907c8" name="Changes" comment="" />
+      <created>1681356705987</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1678760997181</updated>
-      <workItem from="1678760998332" duration="3949000" />
-      <workItem from="1681352794910" duration="2774000" />
-      <workItem from="1681356655877" duration="50000" />
-      <workItem from="1681369472907" duration="65000" />
+      <updated>1681356705987</updated>
+      <workItem from="1681356707230" duration="720000" />
+      <workItem from="1681369244931" duration="201000" />
+      <workItem from="1681369455709" duration="16000" />
     </task>
     <servers />
   </component>

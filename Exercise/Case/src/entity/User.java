@@ -1,17 +1,23 @@
 package entity;
 
 public class User {
-    private final long id;
+    private int id;
     private String userName;
     private String passWord;
-    private static long count=0;
-
-    public User(String userName, String passWord) {
-        this.id = ++count;
+    public User(int id, String userName, String passWord) {
+        super();
+        this.id = id;
         this.userName = userName;
         this.passWord = passWord;
     }
-    public long getId() {
+
+    public User(String userName, String passWord) {
+        super();
+        this.userName = userName;
+        this.passWord = passWord;
+    }
+    public User(){}
+    public int getId() {
         return id;
     }
 

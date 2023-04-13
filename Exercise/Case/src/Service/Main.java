@@ -1,6 +1,4 @@
 package Service;
-
-import entity.Category;
 import entity.User;
 
 import java.util.Scanner;
