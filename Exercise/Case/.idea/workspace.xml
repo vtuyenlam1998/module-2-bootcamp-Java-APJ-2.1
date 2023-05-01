@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59835fa8-ed73-4a26-a14e-128faaaeb909" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Ke-thua/lop-hinh-shape/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="59835fa8-ed73-4a26-a14e-128faaaeb909" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/codegym/module-02-bootcamp-Java-Apj-2.1/source/Exercise/Case",
+    "last_opened_file_path": "C:/codegym/module-02-bootcamp-Java-Apj-2.1/source/case-study/BookManagement2 _module3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,7 +78,7 @@
       <workItem from="1678760998332" duration="3949000" />
       <workItem from="1681352794910" duration="2774000" />
       <workItem from="1681356655877" duration="50000" />
-      <workItem from="1681369472907" duration="65000" />
+      <workItem from="1681369472907" duration="1935000" />
     </task>
     <servers />
   </component>

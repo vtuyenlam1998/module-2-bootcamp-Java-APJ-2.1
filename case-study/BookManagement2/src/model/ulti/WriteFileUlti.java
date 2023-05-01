@@ -61,7 +61,7 @@ public class WriteFileUlti {
                     printedBook.add(book);
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }

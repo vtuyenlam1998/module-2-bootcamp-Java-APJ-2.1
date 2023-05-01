@@ -1,18 +1,14 @@
 				HÓA ĐƠN
 THÔNG TIN NGƯỜI DÙNG: 
-- ID: 9
-- Tên họ đầy đủ: Phạm Văn Chính
-- Số điện thoại: 0987654322
-- Email: phamchinh@gmail.com
-- Địa chỉ nhà: 21K Nguyen van troi
+- ID: 10
+- Tên họ đầy đủ: Au Thien Phuoc
+- Số điện thoại: 0000000000
+- Email: authienphuoc2000@gmail.com
+- Địa chỉ nhà: 26 Hai Duc
 
 
 THÔNG TIN GIỎ HÀNG
-Số lượng sản phẩm đã mua: 3
-Sản phẩm đã mua: Đứa Trẻ Hư (Tái Bản)
-Giá tiền sản phẩm: 150500
-Sản phẩm đã mua: Ngôi Làng Cổ Mộ
-Giá tiền sản phẩm: 157000
-Sản phẩm đã mua: Ngôi Làng Cổ Mộ
-Giá tiền sản phẩm: 157000
-Tổng tiền: 464500 ₫
+Số lượng sản phẩm đã mua: 1
+Sản phẩm đã mua: Willow Nhút Nhát
+Giá tiền sản phẩm: 104000
+Tổng tiền: 104000 ₫

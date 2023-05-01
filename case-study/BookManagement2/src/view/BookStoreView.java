@@ -15,15 +15,15 @@ public class BookStoreView {
 
     private BookStoreView() {
     }
-
+    public static BookStoreView getInstance() {
+        return bookStoreView;
+    }
     UserService userService = UserService.getInstance();
     BookService bookService = BookService.getInstance();
     CartService cartService = CartService.getInstance();
     InvoiceService invoiceService = InvoiceService.getInstance();
 
-    public static BookStoreView getInstance() {
-        return bookStoreView;
-    }
+
 
     public void displayMainMenu() {
         do {
