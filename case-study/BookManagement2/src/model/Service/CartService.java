@@ -41,7 +41,7 @@ public class CartService {
         } else {
             System.out.println("Giỏ hàng:" + "\n" + "Tổng số sản phẩm: " + BOOK_CART.size());
             for (Book book : BOOK_CART) {
-                System.out.println("ID " + book.getID() + ". " + book.getNameBook() + " - Giá tiền: " + book.getPrice() + "₫");
+                System.out.println("ID " + book.getID() + ". " + book.getNameBook() + " - Giá tiền: " + book.getPrice() + "₫" + "Số lượng ");
                 totalCart += book.getPrice();
             }
             System.out.println("----------------------------------------------");

@@ -189,6 +189,7 @@ public class BookService {
                                 System.out.println("Sản phẩm đã hết hàng \uD83D\uDE2D");
                             } else {
                                 BOOK_CART.add(book);
+                                book.setNumberOfBookPurchase();
                                 System.out.println("Sản phẩm " + ID + " đã được thêm vào giỏ!");
                             }
                         }
